@@ -28,12 +28,7 @@ void JetAnalyzer::analyze(const JetCollection& jetCollection) {
             jetEnergy_.push_back(jet.e());
             jetNConstituents_.push_back(jet.constituents().size());
 
-            double sumPt = 0.0, sumEta = 0.0, sumPhi = 0.0;
             for (const auto& constituent : jet.constituents()) {
-                sumPt += constituent.pt();
-                sumEta += constituent.eta();
-                sumPhi += constituent.phi();
-
                 jetConstituentsPx_.push_back(constituent.px());
                 jetConstituentsPy_.push_back(constituent.py());
                 jetConstituentsPz_.push_back(constituent.pz());
@@ -43,9 +38,9 @@ void JetAnalyzer::analyze(const JetCollection& jetCollection) {
                 jetConstituentsPhi_.push_back(constituent.phi());
                 jetConstituentsPdgId_.push_back(constituent.user_index());
             }
+            tree->Fill();
+            clear();
         }
-        tree->Fill();
-        clear();
     }
 
     outputFile_->Write();
