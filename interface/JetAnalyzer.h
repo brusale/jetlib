@@ -6,7 +6,7 @@
 #include "JetCollection.h"
 #include "TTree.h"
 #include <string>
-
+#include <functional>
 class JetAnalyzer {
   public:
     JetAnalyzer(std::string outputFilename = "jet_analysis.root") {
@@ -17,6 +17,7 @@ class JetAnalyzer {
     }
 
     void analyze(const JetCollection& jetCollection);
+    void setFilter(const std::string& filter);
   private:
     TFile* outputFile_;
 
@@ -51,5 +52,14 @@ class JetAnalyzer {
       jetConstituentsPhi_.clear();
       jetConstituentsPdgId_.clear();
     }
+
+    std::function<bool(const fastjet::PseudoJet&)> parseFilter(const std::string& filter);
+    std::function<bool(const fastjet::PseudoJet&)> parseOrExpression(const std::string& expr);
+    std::function<bool(const fastjet::PseudoJet&)> parseAndExpression(const std::string& expr);
+    std::function<bool(const fastjet::PseudoJet&)> parseCondition(const std::string& expr);
+    bool passesFilter(const fastjet::PseudoJet& jet) const;
+
+    //std::vector<std::function<bool(const fastjet::PseudoJet&)>> filterConditions_;
+    std::function<bool(const fastjet::PseudoJet&)> filterConditions_;
 };
 #endif

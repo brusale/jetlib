@@ -42,6 +42,7 @@ int main(int argc, char** argv) {
         printEventInfo(jets);
     }
     JetAnalyzer jetAnalyzer(outputFilename);
+    jetAnalyzer.setFilter("(abs(eta) < 1.3 || abs(eta) > 1.6) && pt > 50");
     jetAnalyzer.analyze(jets);
     return 0;
 }
