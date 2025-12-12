@@ -4,24 +4,6 @@
 cmake_minimum_required(VERSION 3.16...3.21)
 project(jetlib)
 
-#----------------------------------------------------------------------------
-# Find Geant4 package, activating all available UI and Vis drivers by default
-# You can set WITH_GEANT4_UIVIS to OFF via the command line or ccmake/cmake-gui
-# to build a batch mode only executable
-#
-#option(WITH_GEANT4_UIVIS "Build example with Geant4 UI and Vis drivers" ON)
-#if(WITH_GEANT4_UIVIS)
-#  find_package(Geant4 REQUIRED ui_all vis_all)
-#else()
-#  find_package(Geant4 REQUIRED)
-#endif()
-#
-###----------------------------------------------------------------------------
-### Setup Geant4 include directories and compile definitions
-### Setup include directory for this project
-###
-#include(${Geant4_USE_FILE})
-#message(STATUS "Geant4 use file: ${Geant4_USE_FILE}")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 include_directories(${PROJECT_SOURCE_DIR}/interface)
 
