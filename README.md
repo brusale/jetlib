@@ -1,4 +1,4 @@
-# jetlib
+<img src="https://github.com/brusale/jetlib/blob/master/docs/jetlib.png" height="125">
 
 Generate a sample of particles inside a jet. Jetlib generates events through the Pythia8 event generator and clusters particles with FastJet, producing a ROOT file containing information about jets and their constituents.
 
