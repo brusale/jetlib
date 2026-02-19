@@ -9,6 +9,6 @@ cd jetlib
 mkdir build && cd build
 cmake ..
 make -jN
-./jetlib -f output.root --nEvents 5`
+./jetlib -f output.root --nEvents 5
 ```
 Jetlib uses `fastjet-3.5.0` and `pythia8.306`
