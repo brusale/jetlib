@@ -24,7 +24,7 @@ PYBIND11_MODULE(jetlibpy, m) {
         .def("constituents", &fastjet::PseudoJet::constituents);
 
     pybind11::class_<EventGenerator>(m, "EventGenerator")
-        .def(pybind11::init<>())
+        .def(pybind11::init<std::string>(), pybind11::arg("configFile") = "config.cfg")
         .def("initialize", &EventGenerator::initialize)
         .def("generateEvents", &EventGenerator::generateEvents)
         .def("getJetCollection", &EventGenerator::getJetCollection);
