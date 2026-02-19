@@ -32,9 +32,10 @@ int main(int argc, char** argv) {
     argParser.parse(argc, argv);
     bool debug = argParser.isDebug();
     size_t nEvents = argParser.getNEvents();
+    std::string configFile = argParser.getConfigFile();
     std::string outputFilename = argParser.getFilename();
 
-    EventGenerator eventGen;
+    EventGenerator eventGen(configFile);
     eventGen.initialize();
     eventGen.generateEvents(nEvents);
     const JetCollection& jets = eventGen.getJetCollection();
@@ -42,7 +43,8 @@ int main(int argc, char** argv) {
         printEventInfo(jets);
     }
     JetAnalyzer jetAnalyzer(outputFilename);
-    jetAnalyzer.setFilter("(abs(eta) < 1.3 || abs(eta) > 1.6) && pt > 50");
+    jetAnalyzer.setFilter("eta > 1.7 && pt > 30");
+    //jetAnalyzer.setFilter("(abs(eta) < 1.2 || abs(eta) > 1.7) && pt > 300");
     jetAnalyzer.analyze(jets);
     return 0;
 }
